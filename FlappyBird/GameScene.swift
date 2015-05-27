@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate{
+final class GameScene: SKScene, SKPhysicsContactDelegate{
     let verticalPipeGap: CGFloat = 150.0
     
     var bird:SKSpriteNode!
