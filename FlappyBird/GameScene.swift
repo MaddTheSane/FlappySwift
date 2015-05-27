@@ -9,7 +9,7 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
-    let verticalPipeGap = 150.0
+    let verticalPipeGap: CGFloat = 150.0
     
     var bird:SKSpriteNode!
     var skyColor:SKColor!
@@ -18,9 +18,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var movePipesAndRemove:SKAction!
     var moving:SKNode!
     var pipes:SKNode!
-    var canRestart = Bool()
+    var canRestart = false
     var scoreLabelNode:SKLabelNode!
-    var score = NSInteger()
+    var score = 0
     
     let birdCategory: UInt32 = 1 << 0
     let worldCategory: UInt32 = 1 << 1
@@ -145,11 +145,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         pipePair.zPosition = -10
         
         let height = UInt32( self.frame.size.height / 4)
-        let y = Double(arc4random_uniform(height) + height);
+        let y = CGFloat(arc4random_uniform(height) + height);
         
         let pipeDown = SKSpriteNode(texture: pipeTextureDown)
         pipeDown.setScale(2.0)
-        pipeDown.position = CGPoint(x: 0.0, y: y + Double(pipeDown.size.height) + verticalPipeGap)
+        pipeDown.position = CGPoint(x: 0.0, y: y + pipeDown.size.height + verticalPipeGap)
         
         
         pipeDown.physicsBody = SKPhysicsBody(rectangleOfSize: pipeDown.size)
