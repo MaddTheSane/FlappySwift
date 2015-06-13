@@ -122,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.addChild(bird)
         
         // create the ground
-        var ground = SKNode()
+        let ground = SKNode()
         ground.position = CGPoint(x: 0, y: groundTexture.size().height)
         ground.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: self.frame.size.width, height: groundTexture.size().height * 2.0))
         ground.physicsBody?.dynamic = false
@@ -168,7 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         pipeUp.physicsBody?.contactTestBitMask = birdCategory
         pipePair.addChild(pipeUp)
         
-        var contactNode = SKNode()
+        let contactNode = SKNode()
         contactNode.position = CGPoint( x: pipeDown.size.width + bird.size.width / 2, y: self.frame.midY )
         contactNode.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize( width: pipeUp.size.width, height: self.frame.size.height ))
         contactNode.physicsBody?.dynamic = false
@@ -203,11 +203,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         moving.speed = 1
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         if moving.speed > 0  {
-            if let touch =  touches.first as? UITouch {
-                let location = touch.locationInNode(self)
+            if let touch =  touches.first {
+                //let location = touch.locationInNode(self)
+                _ = touch.locationInNode(self)
                 
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
